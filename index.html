@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="favicon-16x16.png" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cobra | Discord Server Wizard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0d0d15;
+      --card-bg: #1a1a2e;
+      --accent: #7289da;
+      --accent-dark: #5865F2;
+      --text: #ffffff;
+      --text-muted: #b0b0b0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      background: linear-gradient(to right, var(--accent), var(--accent-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 2rem 0 1rem;
+      color: var(--accent);
+      text-align: center;
+    }
+
+    .services-grid, .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .service-card, .portfolio-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(114, 137, 218, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card:hover, .portfolio-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(114, 137, 218, 0.2);
+      border-color: var(--accent);
+    }
+
+    .service-card h3, .portfolio-card h3 {
+      font-size: 1.5rem;
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    .service-card ul {
+      padding-left: 1.2rem;
+      margin: 1.5rem 0;
+    }
+
+    .service-card ul li {
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+
+    .service-card ul li:before {
+      content: "✓";
+      color: var(--accent);
+      position: absolute;
+      left: -1.2rem;
+    }
+
+    .price-tag {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-weight: bold;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .highlight-card {
+      border: 2px solid var(--accent);
+      position: relative;
+    }
+
+    .highlight-badge {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--accent);
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .portfolio-card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(114, 137, 218, 0.3);
+    }
+
+    .stats {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .stat {
+      background: rgba(114, 137, 218, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .stat strong {
+      color: var(--accent);
+    }
+
+    .cta-section {
+      text-align: center;
+      margin: 4rem 0;
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: var(--accent);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(114, 137, 218, 0.4);
+    }
+
+    .cta-button:hover {
+      background: var(--accent-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(114, 137, 218, 0.6);
+    }
+
+    .guarantee {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .container {
+        padding: 1.5rem;
+      }
+      
+      .services-grid, .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Cobra</h1>
+      <p style="font-size: 1.2rem; color: var(--text-muted);">Discord Server Specialist</p>
+    </header>
+
+    <h2>What I Offer</h2>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Basic Setup</h3>
+        <ul>
+          <li>Professional Roles & Channels</li>
+          <li>2 Premium Bots (Moderation + Music)</li>
+          <li>Basic Security Protection</li>
+          <li>Server Optimization</li>
+          <li>24-hour Support</li>
+        </ul>
+        <div class="price-tag">$10 Amazon Gift Card</div>
+      </div>
+
+      <div class="service-card highlight-card">
+        <div class="highlight-badge">MOST POPULAR</div>
+        <h3>Premium Setup</h3>
+        <ul>
+          <li>Fully Custom Bots</li>
+          <li>VIP Role System & Perks</li>
+          <li>Advanced Security Suite</li>
+          <li>Custom Welcome Experience</li>
+          <li>7-Day Premium Support</li>
+        </ul>
+        <div class="price-tag">$20 Steam Gift Card</div>
+      </div>
+    </div>
+
+    <h2>My Work</h2>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <img src="discord-showcase.png" alt="90+ Member Discord Server">
+        <h3>Gaming Community Server</h3>
+        <p>Transformed a small server into a thriving 90+ member community with:</p>
+        <ul>
+          <li>Custom role hierarchy</li>
+          <li>Automated moderation system</li>
+          <li>Interactive welcome bots</li>
+          <li>Streamer integration</li>
+        </ul>
+        <div class="stats">
+          <div class="stat"><strong>90+</strong> members</div>
+          <div class="stat"><strong>24/7</strong> uptime</div>
+          <div class="stat"><strong>100%</strong> satisfaction</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Ready to Transform Your Server?</h2>
+      <p style="max-width: 600px; margin: 0 auto 2rem; line-height: 1.6;">
+        I'll have your Discord server looking professional and running smoothly within 24 hours. 
+        Limited slots available - book yours now!
+      </p>
+      <a href="https://discord.com/users/YourID" class="cta-button">
+        <i class="fab fa-discord"></i> DM Me on Discord
+      </a>
+      <p class="guarantee">100% satisfaction guaranteed or your gift card back</p>
+    </div>
+  </div>
+</body>
+</html>
